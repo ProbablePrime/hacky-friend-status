@@ -2,14 +2,14 @@ const config = require('config');
 const csv = require("csvtojson");
 const fetch = require('node-fetch');
 
-const { login, API } = require('./helpers');
+const { login, API, getAuthHeader } = require('./helpers');
 
 async function removeFriend(token, friendUserId) {
     const result = await fetch(`${API}users/${config.get('id')}/friends/${friendUserId}`, {
         method:'DELETE',
         headers: { 
             'Content-Type': 'application/json',
-            'Authorization': `neos ${config.get('id')}:${token}`
+            'Authorization': getAuthHeader(config.get('id'), token)
         }
     });
     return result.status === 200;

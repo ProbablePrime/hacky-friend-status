@@ -3,27 +3,12 @@ const config = require('config');
 
 const fs = require('fs');
 const { parse } = require('json2csv');
-const { login, API } = require('./helpers');
-
-async function getFriends(token) {
-    const result = await fetch(API + 'users/'+ config.get('id') + '/friends', {
-        headers: {
-            'Authorization': 'neos '+ config.get('id') + ':' + token
-        }
-    });
-
-    const json = await result.json();
-    return json;
-}
-async function getStatus(userId) {
-    const result = await fetch(API + 'users/'+ userId + '/status');
-    const json = await result.json();
-    return json;
-}
+const { login, API, getAuthHeader } = require('./helpers');
+const {getFriends, getStatus} = require('./apiStuff');
 
 async function main() {
     const token = await login(config.get('username'),config.get('password'));
-    const friends = await getFriends(token);
+    const friends = await getFriends(token, config.get('id'));
 
     const offlineFriends = friends
         .filter(function(friend) {

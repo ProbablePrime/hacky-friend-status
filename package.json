@@ -14,6 +14,10 @@
     "csv2jsonjs": "^1.0.1",
     "csvtojson": "^2.0.10",
     "json2csv": "^5.0.6",
-    "node-fetch": "^2.6.1"
+    "jsontostringtable": "^1.0.2",
+    "log-update": "^4.0.0",
+    "luxon": "^2.0.2",
+    "node-fetch": "^2.6.1",
+    "table-layout": "github:ProbablePrime/table-layout#feat/transform"
   }
 }

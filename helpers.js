@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const API = 'https://api.neos.com/api/';
 
-const login = async function(username, password) {
+async function login(username, password) {
     const body = {
         Username: username,
         Password: password,
@@ -18,7 +18,12 @@ const login = async function(username, password) {
     return json.token;
 }
 
+function getAuthHeader(userId, token) {
+    return 'neos '+ userId + ':' + token
+}
+
 module.exports = {
     login,
-    API
+    API,
+    getAuthHeader
 };
